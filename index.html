@@ -25,15 +25,15 @@
                 </td>
                 <td>
                     <select id="level" class="styled-select" onchange="quiz.select_change()">
-                        <option value="01" class="service-small">綜合_01</option>
+                        <!-- <option value="01" class="service-small">綜合_01</option>
                         <option value="02" class="service-small">綜合_02</option>
                         <option value="03" class="service-small">綜合_03</option>
                         <option value="04" class="service-small">新和_01</option>
                         <option value="05" class="service-small">注音_01</option>
-                        <option value="07" class="service-small">07_神奇的竹筒飯</option>                        
-                        <option value="08" class="service-small">08_不一樣的故事</option>                        
-                        <option value="09" class="service-small">09_美味的一堂課</option>                                                
-                        <option value="XX" class="service-small">測試_01</option>
+                        <option value="XX" class="service-small">測試_01</option> -->
+                        <option value="zhuyin_2u_7" class="service-small">07_神奇的竹筒飯_注音</option>
+                        <option value="zhuyin_2u_8" class="service-small">08_不一樣的故事_注音</option>
+                        <option value="zhuyin_2u_9" class="service-small">09_美味的一堂課_注音</option>                                                
                     </select>
                 </td>
             </tr>
@@ -66,15 +66,91 @@
             <div class="option_list">
                 <!-- Here I've inserted options from JavaScript -->
             </div>
-        </section>
+            <div class="correct_list">
+                <p></p>
+                <!-- Here I've inserted options from JavaScript -->
+              </div>
+              <div class="select_list">
+                <!-- Here I've inserted options from JavaScript -->
+              </div>
 
         <!-- footer of Quiz Box -->
         <footer>
             <div class="total_que">
                 <!-- Here I've inserted Question Count Number from JavaScript -->
             </div>
-            <button class="next_btn">下一題</button>
+            <button class="next_btn" >下一題</button>
         </footer>
+              
+            <div class="keyboard is-hide" id="vKeyboard">
+                <!-- 注音鍵盤 -->
+                <div class="keyboard-body keyboard-zhuyin">
+                    <div class="keyboard-row">
+                        <a class="btn btn-kbd btn-kbd-c1" href="#" onclick="inputkeyb('ㄅ')" title="輸入：ㄅ">ㄅ</a>
+                        <a class="btn btn-kbd btn-kbd-c1" href="#" onclick="inputkeyb('ㄉ')" title="輸入：ㄉ">ㄉ</a>
+                        <span class="btn btn-kbd empty"></span>
+                        <span class="btn btn-kbd empty"></span>
+                        <a class="btn btn-kbd btn-kbd-c1" href="#" onclick="inputkeyb('ㄓ')" title="輸入：ㄓ">ㄓ</a>
+                        <span class="btn btn-kbd empty"></span>
+                        <span class="btn btn-kbd empty"></span>
+                        <a class="btn btn-kbd btn-kbd-c3" href="#" onclick="inputkeyb('ㄚ')" title="輸入：ㄚ">ㄚ</a>
+                        <a class="btn btn-kbd btn-kbd-c3" href="#" onclick="inputkeyb('ㄞ')" title="輸入：ㄞ">ㄞ</a>
+                        <a class="btn btn-kbd btn-kbd-c3" href="#" onclick="inputkeyb('ㄢ')" title="輸入：ㄢ">ㄢ</a>
+                        <a class="btn btn-kbd btn-kbd-c3" href="#" onclick="inputkeyb('ㄦ')" title="輸入：ㄦ">ㄦ</a>
+                    </div>
+                    <div class="keyboard-row">
+                        <a class="btn btn-kbd btn-kbd-c1" href="#" onclick="inputkeyb('ㄆ')" title="輸入：ㄆ">ㄆ</a>
+                        <a class="btn btn-kbd btn-kbd-c1" href="#" onclick="inputkeyb('ㄊ')" title="輸入：ㄊ">ㄊ</a>
+                        <a class="btn btn-kbd btn-kbd-c1" href="#" onclick="inputkeyb('ㄍ')" title="輸入：ㄍ">ㄍ</a>
+                        <a class="btn btn-kbd btn-kbd-c1" href="#" onclick="inputkeyb('ㄐ')" title="輸入：ㄐ">ㄐ</a>
+                        <a class="btn btn-kbd btn-kbd-c1" href="#" onclick="inputkeyb('ㄔ')" title="輸入：ㄔ">ㄔ</a>
+                        <a class="btn btn-kbd btn-kbd-c1" href="#" onclick="inputkeyb('ㄗ')" title="輸入：ㄗ">ㄗ</a>
+                        <a class="btn btn-kbd btn-kbd-c2" href="#" onclick="inputkeyb('ㄧ')" title="輸入：ㄧ">ㄧ</a>
+                        <a class="btn btn-kbd btn-kbd-c3" href="#" onclick="inputkeyb('ㄛ')" title="輸入：ㄛ">ㄛ</a>
+                        <a class="btn btn-kbd btn-kbd-c3" href="#" onclick="inputkeyb('ㄟ')" title="輸入：ㄟ">ㄟ</a>
+                        <a class="btn btn-kbd btn-kbd-c3" href="#" onclick="inputkeyb('ㄣ')" title="輸入：ㄣ">ㄣ</a>
+                        <span class="btn btn-kbd empty"></span>
+                    </div>
+                    <div class="keyboard-row">
+                        <a class="btn btn-kbd btn-kbd-c1" href="#" onclick="inputkeyb('ㄇ')" title="輸入：ㄇ">ㄇ</a>
+                        <a class="btn btn-kbd btn-kbd-c1" href="#" onclick="inputkeyb('ㄋ')" title="輸入：ㄋ">ㄋ</a>
+                        <a class="btn btn-kbd btn-kbd-c1" href="#" onclick="inputkeyb('ㄎ')" title="輸入：ㄎ">ㄎ</a>
+                        <a class="btn btn-kbd btn-kbd-c1" href="#" onclick="inputkeyb('ㄑ')" title="輸入：ㄐ">ㄑ</a>
+                        <a class="btn btn-kbd btn-kbd-c1" href="#" onclick="inputkeyb('ㄕ')" title="輸入：ㄕ">ㄕ</a>
+                        <a class="btn btn-kbd btn-kbd-c1" href="#" onclick="inputkeyb('ㄘ')" title="輸入：ㄘ">ㄘ</a>
+                        <a class="btn btn-kbd btn-kbd-c2" href="#" onclick="inputkeyb('ㄨ')" title="輸入：ㄨ">ㄨ</a>
+                        <a class="btn btn-kbd btn-kbd-c3" href="#" onclick="inputkeyb('ㄜ')" title="輸入：ㄜ">ㄜ</a>
+                        <a class="btn btn-kbd btn-kbd-c3" href="#" onclick="inputkeyb('ㄠ')" title="輸入：ㄠ">ㄠ</a>
+                        <a class="btn btn-kbd btn-kbd-c3" href="#" onclick="inputkeyb('ㄤ')" title="輸入：ㄤ">ㄤ</a>
+                        <span class="btn btn-kbd empty"></span>
+                    </div>
+                    <div class="keyboard-row">
+                        <a class="btn btn-kbd btn-kbd-c1" href="#" onclick="inputkeyb('ㄈ')" title="輸入：ㄈ">ㄈ</a>
+                        <a class="btn btn-kbd btn-kbd-c1" href="#" onclick="inputkeyb('ㄌ')" title="輸入：ㄌ">ㄌ</a>
+                        <a class="btn btn-kbd btn-kbd-c1" href="#" onclick="inputkeyb('ㄏ')" title="輸入：ㄏ">ㄏ</a>
+                        <a class="btn btn-kbd btn-kbd-c1" href="#" onclick="inputkeyb('ㄒ')" title="輸入：ㄒ">ㄒ</a>
+                        <a class="btn btn-kbd btn-kbd-c1" href="#" onclick="inputkeyb('ㄖ')" title="輸入：ㄖ">ㄖ</a>
+                        <a class="btn btn-kbd btn-kbd-c1" href="#" onclick="inputkeyb('ㄙ')" title="輸入：ㄙ">ㄙ</a>
+                        <a class="btn btn-kbd btn-kbd-c2" href="#" onclick="inputkeyb('ㄩ')" title="輸入：ㄩ">ㄩ</a>
+                        <a class="btn btn-kbd btn-kbd-c3" href="#" onclick="inputkeyb('ㄝ')" title="輸入：ㄝ">ㄝ</a>
+                        <a class="btn btn-kbd btn-kbd-c3" href="#" onclick="inputkeyb('ㄡ')" title="輸入：ㄡ">ㄡ</a>
+                        <a class="btn btn-kbd btn-kbd-c3" href="#" onclick="inputkeyb('ㄥ')" title="輸入：ㄥ">ㄥ</a>
+                        <span class="btn btn-kbd empty"></span>
+                    </div>
+                    <div class="keyboard-row">
+                        <a class="btn btn-kbd" href="#" onclick="inputkeyb('ˊ')" title="輸入：二聲">ˊ</a>
+                        <a class="btn btn-kbd" href="#" onclick="inputkeyb('ˇ')" title="輸入：三聲">ˇ</a>
+                        <a class="btn btn-kbd" href="#" onclick="inputkeyb('ˋ')" title="輸入：四聲">ˋ</a>
+                        <a class="btn btn-kbd" href="#" onclick="inputkeyb('˙')" title="輸入：輕聲">˙</a>
+                        <a class="btn btn-kbd btn-kbd-space" href="#" onclick="inputkeyb('space')" title="空格">空白鍵</a>
+                        <a class="btn btn-kbd btn-kbd-back" href="#" onclick="inputkeyb('back')" title="倒退">&larr;</a>
+                    </div>
+                </div>
+                <!-- end: 注音鍵盤-->
+            </div>
+        </div>            
+        </section>
+
     </div>
 
     <!-- Result Box -->
