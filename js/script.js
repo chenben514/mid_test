@@ -213,7 +213,8 @@ function confirmClick() {
     correctAnswer = questions[que_count].question.replace(".mp3", "");
   }
 
-  if (inputAnswer === correctAnswer) directSelected("correct");
+  if (inputAnswer.replace(" ", "") === correctAnswer.replace(" ", ""))
+    directSelected("correct");
   else directSelected("incorrect");
 
   //   document.querySelector(".target" + String(j)).innerText !==
@@ -644,6 +645,12 @@ function keydown(e) {
       break;
     case "KeyL":
       inputkeyb("ㄠ");
+      break;
+    case "KeyL":
+      inputkeyb("ㄠ");
+      break;
+    case "Semicolon":
+      inputkeyb("ㄤ");
       break;
     case "KeyZ":
       inputkeyb("ㄈ");
