@@ -87,7 +87,12 @@ function getQuestions() {
   var selCategory = document.getElementById("category").value;
   var selLevel = document.getElementById("level").value;
   var selFile = "./data/" + selCategory + "_" + selLevel + ".csv";
-  if (selLevel.includes("zhuyin")) curQuesType = "direct_input";
+  if (selLevel.includes("zhuyin")) {
+    curQuesType = "direct_input";
+    document.querySelector(".keyboard").hidden = false;
+  } else {
+    document.querySelector(".keyboard").hidden = true;
+  }
 
   var read = new XMLHttpRequest();
   read.open("GET", selFile, false);
@@ -532,6 +537,7 @@ function queCounter(index) {
 
 function inputkeyb(char) {
   var field = document.getElementById("direct_input");
+  if (field === null) return;
   if (field.name.length) {
     // back
     if (char == "back") {
