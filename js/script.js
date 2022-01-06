@@ -142,6 +142,7 @@ function getQuestions() {
     option3;
     option4;
     direct_answers = [];
+    oriQuestion;
   }
   //2.generate questions
   questions = [];
@@ -149,6 +150,7 @@ function getQuestions() {
   var j;
   for (i = 0; i < quesCnt; i++) {
     let question = new Question();
+    question.oriQuestion = quesArr[quesList[i]];
     var singQuesArr = quesArr[quesList[i]].split(";");
     question.numb = i + 1;
     question.question = singQuesArr[0];
