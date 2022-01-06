@@ -14,6 +14,12 @@ const time_line = document.querySelector("header .time_line");
 const timeText = document.querySelector(".timer .time_left_txt");
 const timeCount = document.querySelector(".timer .timer_sec");
 timeCount.textContent = timeValue;
+var selLevel = "";
+
+let curQuestion = "";
+let curTopic = "";
+
+var errorList = []; //error list
 
 // if startQuiz button clicked
 start_btn.onclick = () => {
@@ -85,13 +91,24 @@ next_btn.onclick = () => {
 function getQuestions() {
   //ben_test
   var selCategory = document.getElementById("category").value;
-  var selLevel = document.getElementById("level").value;
+  selLevel = document.getElementById("level").value;
   var selFile = "./data/" + selCategory + "_" + selLevel + ".csv";
   if (selLevel.includes("zhuyin")) {
     curQuesType = "direct_input";
     document.querySelector(".keyboard").hidden = false;
   } else {
     document.querySelector(".keyboard").hidden = true;
+  }
+  let tmpCnt = 0;
+
+  let tmpArr = [];
+
+  var errContent = localStorage.getItem(curTopic + "_err");
+  if (errContent != null) {
+    errArr = errContent.split("@");
+    for (let j = 0; j < errArr.length; j++) {
+      tmpArr.push(errArr[j]);
+    }
   }
 
   var read = new XMLHttpRequest();
@@ -103,9 +120,6 @@ function getQuestions() {
   var quesList = [];
   let quesCnt = quesArr.length;
   let ansList = [];
-  let tmpCnt = 0;
-
-  let tmpArr = [];
   let k = 0;
   for (let k = 0; k < quesCnt; k++) {
     if (quesArr[k].length > 1) tmpArr.push(quesArr[k]);
@@ -134,8 +148,8 @@ function getQuestions() {
   var i;
   var j;
   for (i = 0; i < quesCnt; i++) {
-    var singQuesArr = quesArr[quesList[i]].split(";");
     let question = new Question();
+    var singQuesArr = quesArr[quesList[i]].split(";");
     question.numb = i + 1;
     question.question = singQuesArr[0];
     question.answer = singQuesArr[1];
@@ -211,6 +225,7 @@ function pronClick() {
 
 function confirmClick() {
   let inputAnswer = document.querySelector(".direct_input").value;
+  document.querySelector("#confirmButton").disabled = "true";
   let correctAnswer = "";
   if (curQuesType === "direct_input") {
     correctAnswer = questions[que_count].answer;
@@ -234,6 +249,7 @@ function showQuetions(index) {
   const que_text = document.querySelector(".que_text");
   correct_list.innerHTML = "";
   curTimeValue = timeValue;
+  curQuestion = questions[index].oriQuestion;
 
   nowCursorFocus = 0;
   //creating a new span and div tag for question and option and passing the value using array index
@@ -275,7 +291,7 @@ function showQuetions(index) {
     let answer_target =
       '<div><input type="text" class="direct_input" name="direct_input" id="direct_input" value="" placeholder="輸入答案" style="width:40%;height:40px;font-size:20px;padding:10px;">';
     answer_target +=
-      "<span> <button onclick='confirmClick()' style='width:70px;height:40px;' >確認</button></span> </div>";
+      "<span> <button onclick='confirmClick()' id='confirmButton' style='width:70px;height:40px;' >確認</button></span> </div>";
     curQuesType = "direct_input";
     option_list.innerHTML = answer_target;
   } else {
@@ -373,6 +389,11 @@ function directSelected(userAns) {
       document.querySelector(".direct_input").style.backgroundColor = "green";
     }
   } else {
+    var errStorage = localStorage.getItem(curTopic + "_err");
+    if (errStorage === null) errStorage = curQuestion;
+    else errStorage = errStorage + "@" + curQuestion;
+    localStorage.setItem(curTopic + "_err", errStorage);
+
     console.log("Wrong Answer");
     if (curQuesType !== "direct_input") {
       document.querySelector(".option").classList.add("incorrect");
