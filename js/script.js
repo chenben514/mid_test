@@ -103,13 +103,13 @@ function getQuestions() {
 
   let tmpArr = [];
 
-  var errContent = localStorage.getItem(curTopic + "_err");
-  if (errContent != null) {
-    errArr = errContent.split("@");
-    for (let j = 0; j < errArr.length; j++) {
-      tmpArr.push(errArr[j]);
-    }
-  }
+  // var errContent = localStorage.getItem(curTopic + "_err");
+  // if (errContent != null) {
+  //   errArr = errContent.split("@");
+  //   for (let j = 0; j < errArr.length; j++) {
+  //     tmpArr.push(errArr[j]);
+  //   }
+  // }
 
   var read = new XMLHttpRequest();
   read.open("GET", selFile, false);
@@ -235,8 +235,10 @@ function confirmClick() {
     correctAnswer = questions[que_count].question.replace(".mp3", "");
   }
 
-  if (inputAnswer.replace(" ", "") === correctAnswer.replace(" ", ""))
-    directSelected("correct");
+  inputAnswer = inputAnswer.replace(/ /g, "");
+  correctAnswer = correctAnswer.replace(/ /g, "");
+
+  if (inputAnswer === correctAnswer) directSelected("correct");
   else directSelected("incorrect");
 
   //   document.querySelector(".target" + String(j)).innerText !==
